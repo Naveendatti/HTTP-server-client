@@ -19,8 +19,8 @@ int server_id,new_socket,addrlength;
  server_id=socket(AF_INET,SOCK_STREAM,0);
 
 if(server_id<0){
-cout<<"unable to create a socket, i am sorry,bye"<<endl;
-return 0;
+cout<<"unable to create a socket, i am sorry,bye: "<<endl;
+exit(EXIT_FAILURE);
 }
 /*->now we assign ip address and port number for our socket.
  parameters are:
@@ -37,28 +37,30 @@ address.sin_addr.s_addr=htonl(INADDR_ANY); //INADDR_ANY means os  decides. symbo
 address.sin_port=htons(port);
 
 if(bind(server_id,(struct sockaddr *)&address,sizeof(address))<0){
-cout<<"cannot bind address"<<endl;
-return 0;
+cout<<"cannot bind address :"<<endl;
+exit(EXIT_FAILURE);
 }
 /*
 here our socket listen for connections and accept connections.
 a new socket is created by accepting which transfers data not listening socket
 */
 if(listen(server_id,100)<0){
-cout<<"socket is failed to listen"<<endl;
-return 0;
+cout<<"socket is failed to listen: "<<endl;
+exit(EXIT_FAILURE);
 }
 while(true){
-new_socket=accept(server_id,(struct sockaddr *)&address,(socklen_t *)&addrlength);
+cout<<"waiting for connection"<<endl;
+new_socket=accept(server_id,(struct sockaddr*)&address,(socklen_t *)&addrlength);
 if(new_socket<0){
 cout<<"failed to accept connection"<<endl;
-return 0;
+ exit(EXIT_FAILURE);
 }
 /*
 sending and receiving message between server and client using read and write functions. we can use send and recieve function also
 */
 vector<char> buffer (4096);
 string message;
+
 long val=recv(new_socket,&buffer[0],4096,0);
  if(val==-1){
 cout<<"client dont want to send anything"<<endl;
