@@ -60,15 +60,17 @@ sending and receiving message between server and client using read and write fun
 */
 vector<char> buffer (4096);
 string message;
-
+do{
 long val=recv(new_socket,&buffer[0],4096,0);
- if(val==-1){
+ if(val==0){
 cout<<"client dont want to send anything"<<endl;
 return 0;
 }
-message.append(buffer.cbegin(),buffer.cend());
+
+message.append(buffer.cend(),buffer.cbegin());
 
 send(new_socket,&buffer[0],buffer.size(),0);
+}while(message.size()!=0);
 
 close(new_socket);
 }
