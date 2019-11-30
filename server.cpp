@@ -68,7 +68,7 @@ return 0;
 }
 
 message.append(buffer.cbegin(),buffer.cend());
-reverse(message.begin(),message.end());
+reverse(message.cbegin(),message.cend());
 
 send(new_socket,&message[0],message.size(),0);
 }while(message.size()!=0);
