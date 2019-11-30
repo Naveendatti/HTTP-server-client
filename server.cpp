@@ -71,7 +71,7 @@ return 0;
 message.append(buffer.cbegin(),buffer.cend());
 reverse(message.begin(),message.end());
 cout<<message<<endl;
-send(new_socket,&message[0],message.size(),0);
+send(new_socket,&message,message.size(),0);
 }while(message.size()!=0);
 
 close(new_socket);
