@@ -67,9 +67,10 @@ cout<<"client dont want to send anything"<<endl;
 return 0;
 }
 
-message.append(buffer.cend(),buffer.cbegin());
+message.append(buffer.cbegin(),buffer.cend());
+reverse(message.begin(),message.end());
 
-send(new_socket,&buffer[0],buffer.size(),0);
+send(new_socket,&message[0],message.size(),0);
 }while(message.size()!=0);
 
 close(new_socket);
