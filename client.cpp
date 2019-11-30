@@ -31,7 +31,7 @@ return 0;
 int n=0;
 do{
 string message;
-cin>>message;
+getline(cin,message);
 n=message.size();
 send(client,message.c_str(),message.size(),0);
 cout<<"message sent"<<endl;
