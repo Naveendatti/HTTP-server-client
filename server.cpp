@@ -78,6 +78,11 @@ while(i>=0){
 reply.push_back(buffer[i]);
 i--;
 }
+int j=0;
+while(reply[j]!='\0'){
+cout<<reply[j];
+j++;
+}
 send(new_socket,&reply[0],reply.size(),0);
 
 }while(1);
