@@ -56,6 +56,8 @@ if(new_socket<0){
 cout<<"failed to accept connection"<<endl;
  exit(EXIT_FAILURE);
 }
+else
+cout<<"client got connected"<<endl;
 /*
 sending and receiving message between server and client using read and write functions. we can use send and recieve function also
 */
@@ -66,15 +68,19 @@ message.clear();
 long val=recv(new_socket,&buffer[0],4096,0);
  if(val==0){
 cout<<"client dont want to send anything"<<endl;
-return 0;
+break;
 }
+int i=0;
+while(buffer[i]!='\0')
+i++;
+vector<char> reply;
+while(i>=0){
+reply.push_back(buffer[i]);
+i--;
+}
+send(new_socket,&reply[0],reply.size(),0);
 
-message.append(buffer.cbegin(),buffer.cend());
-reverse(message.begin(),message.end());
-cout<<message<<endl;
-send(new_socket,&message,message.size(),0);
-
-}while(message.size()!=0);
+}while(1);
 
 close(new_socket);
 }
