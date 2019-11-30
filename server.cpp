@@ -7,6 +7,7 @@
 #include<arpa/inet.h>
 #include<string>
 #include<vector>
+#include<algorithm>
 using namespace std;
 int main(){
 
@@ -68,7 +69,7 @@ return 0;
 }
 
 message.append(buffer.cbegin(),buffer.cend());
-reverse(message.cbegin(),message.cend());
+reverse(message.begin(),message.end());
 
 send(new_socket,&message[0],message.size(),0);
 }while(message.size()!=0);
