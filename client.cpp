@@ -19,7 +19,7 @@ struct sockaddr_in address;
 memset((char *)&address,0,sizeof(address));
 address.sin_family=AF_INET;
 address.sin_port=htons(port);
-if(inet_pton(AF_INET,"3.133.134.221",&address.sin_addr)<0){
+if(inet_pton(AF_INET,"18.188.107.171",&address.sin_addr)<0){
 cout<<"invalid address"<<endl;
 return 0;
 }
