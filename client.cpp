@@ -28,13 +28,17 @@ if(connect(client,(struct sockaddr *)&address,sizeof(address))<0){
 cout<<"connection faile"<<endl;
 return 0;
 }
+int n=0;
+do{
 string message;
 cin>>message;
+n=message.size();
 send(client,message.c_str(),message.size(),0);
 cout<<"message sent"<<endl;
 char response [4096];
 recv(client,response,4096,0);
 cout<<response<<endl;
+}while(n>0)
 
 return 0;
 }
