@@ -37,6 +37,7 @@ send(client,message.c_str(),message.size(),0);
 cout<<"message sent"<<endl;
 char response [4096];
 recv(client,response,4096,0);
+cout<<"message received: ";
 cout<<response<<endl;
 }while(n>0);
 

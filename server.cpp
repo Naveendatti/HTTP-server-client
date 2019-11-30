@@ -62,6 +62,7 @@ sending and receiving message between server and client using read and write fun
 vector<char> buffer (4096);
 string message;
 do{
+message.clear();
 long val=recv(new_socket,&buffer[0],4096,0);
  if(val==0){
 cout<<"client dont want to send anything"<<endl;
@@ -72,6 +73,7 @@ message.append(buffer.cbegin(),buffer.cend());
 reverse(message.begin(),message.end());
 cout<<message<<endl;
 send(new_socket,&message,message.size(),0);
+
 }while(message.size()!=0);
 
 close(new_socket);
